@@ -1,0 +1,40 @@
+[package]
+name = "md2pptx"
+version = "0.1.0"
+edition = "2021"
+description = "A CLI tool to convert Markdown files to PowerPoint presentations"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/yourusername/md2pptx"
+keywords = ["markdown", "powerpoint", "pptx", "cli", "converter"]
+categories = ["command-line-utilities", "text-processing"]
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] }
+pulldown-cmark = "0.9"
+thiserror = "1.0"
+anyhow = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+zip = "0.6"
+quick-xml = { version = "0.31", features = ["serialize"] }
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4"] }
+walkdir = "2.4"
+
+
+[dev-dependencies]
+tempfile = "3.8"
+proptest = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+
+[[bench]]
+name = "conversion_bench"
+harness = false
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
